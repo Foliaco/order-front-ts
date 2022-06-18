@@ -1,0 +1,3 @@
+<div class="btn-group tr-{{buttons.length}}">
+  <button class="border-{{button.color}}" *ngFor="let button of buttons" (click)="Method(button.name)" ><span class="{{button.color}}-txt">{{button.name}}</span></button>
+</div>

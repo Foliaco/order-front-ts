@@ -1,0 +1,13 @@
+.btn-group{
+  margin-top:40px;
+}
+.border-danger{
+  border-color:var(--danger);
+}
+button:hover{
+  background-color:transparent;
+  transform:scale(0.9);
+}
+button:hover span{
+  color:var(--text);
+}

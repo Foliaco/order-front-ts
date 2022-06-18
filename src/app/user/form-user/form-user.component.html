@@ -1,0 +1,116 @@
+<div class="form-user-content" style="margin:10px 0px 20px 0px">
+  <div class="header-form">
+    <h2>Maestro de usuarios</h2>
+    <div class="search">
+      <input type="text" name="search" [(ngModel)]="name" placeholder="Busque un producto" (keydown)="enter($event)" >
+      <button (click)="searchPerson()" ><span><img src="/assets/images/buscar.png" alt=""></span></button>
+    </div>
+    <div class="options" >
+      <div class="option">
+        <label class="option"><p style="margin-right:10px;">Nombre</p>
+        <input type="radio" name="option_search" value="names" id="opt_names" (click)="setOption('names')" checked >
+        </label>
+      </div>
+      <div class="option">
+        <label class="option"><p style="margin-right:10px;">Apellidos</p>
+        <input type="radio" name="option_search" value="lastnames" id="opt_username" (click)="setOption('lastnames')" >
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <app-table-user [users]="users"></app-table-user>
+
+  <form class="form-user form tr-5" (submit)="sendPerson($event)">
+    <div class="state_user">
+      <p>ACTIVO</p>
+      <div class="state {{this.states.className}}" (click)="changeState()">
+        <input type="checkbox" name="state" value={{this.states.state}}>
+      </div>
+    </div>
+    <div class="control-form-user">
+      <label for="names">Nombres</label>
+      <input type="text" name="names" id="names" placeholder="Nombres de la persona"/>
+    </div>
+
+    <div class="control-form-user">
+      <label for="lastnames">Apellidos</label>
+      <input type="text" name="lastnames" id="lastnames" placeholder="Apellidos de la persona"/>
+    </div>
+
+    <div class="control-form-user">
+      <label for="username">User</label>
+      <input type="text" name="username" id="username" placeholder="Usuario"/>
+    </div>
+
+    <div class="control-form-user">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" placeholder="*********"/>
+    </div>
+
+    <div class="control-form-user">
+      <label for="names">Correo</label>
+      <input type="email" name="email" id="email" placeholder="example@institucion.com.co"/>
+    </div>
+
+    <div class="control-form-user">
+      <label for="phone">Telefono
+      </label>
+      <input type="phone" name="phone" id="phone" placeholder="Sin espacios por favor"/>
+    </div>
+
+    <div class="control-form-user">
+      <label for="phone">N° Identidad
+      </label>
+      <input type="document" name="document" id="document" placeholder="N° identidad"/>
+    </div>
+
+    <div class="control-form-user">
+      <label for="idTypeDocument">Tipo Identidad
+      </label>
+      <select name="idTypeDocument">
+        <option *ngFor="let typeDocument of typeDocuments" value="{{typeDocument.idTypeDocument}}" >{{typeDocument.name}}</option>
+      </select>
+    </div>
+
+    <div class="control-form-user">
+      <label for="bussines">Empresa
+      </label>
+      <select name="bussines"  (click)="setStation($event)">
+        <option *ngFor="let bussines of _bussines" value="{{bussines.idBussine}}">{{bussines.name}}</option>
+      </select>
+    </div>
+
+    <div class="control-form-user">
+      <label for="station">Sede
+      </label>
+      <select name="station" (click)="setDependencies($event)" *ngIf="station.length!==0; else nothing">
+        <option name="station" *ngFor="let _station of station" value="{{_station.idStation}}" >{{_station.name}}</option>
+      </select>
+      <ng-template #nothing>
+          <input type="text" disabled value="No hay una sede aun">
+      </ng-template>
+    </div>
+
+    <div class="control-form-user">
+      <label for="dependencies">Area
+      </label>
+      <select name="dependencies">
+        <option  *ngFor="let dep of dependecies" value="{{dep.idDependecie}}" >{{dep.name}}</option>
+      </select>
+    </div>
+
+    <div class="control-form-user">
+      <label for="idRol">Rol
+      </label>
+      <select name="idRol" (click)="setDescripcion($event)">
+        <option  *ngFor="let _rol of rol" value="{{_rol.idRol}}" >{{_rol.detalle}}</option>
+      </select>
+    </div>
+    <div class="control-form-user">
+      <p>{{description}}</p>
+    </div>
+    <button class="primary"><span class="white-txt">Guardar</span></button>
+  </form>
+
+</div>

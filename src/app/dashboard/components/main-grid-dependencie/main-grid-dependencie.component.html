@@ -1,0 +1,22 @@
+<div class="reload">
+  <button (click)="fillDependencies()"><span>Recargar</span></button>
+</div>
+<div class="grid-main" *ngIf="dependencies.length!=0; else noHay">
+
+  <div class="card"  *ngFor="let dependencie of dependencies">
+    <div class="crad-header">
+      <h3>{{dependencie.name}}</h3>
+      <img src="../../../../assets/images/workplace.png" />
+      <p>Direccion {{dependencie.name}}</p>
+    </div>
+    <div class="body">
+      <button (click)="getPage('main/bussines/station/dependecies',dependencie.idDependecie)" ><span>Ver</span></button>
+      <button (click)="getPage('main/bussines/master-bussines/',dependencie.idDependecie)"><span>Editar</span></button>
+    </div>
+  </div>
+
+</div>
+<ng-template #noHay>
+  <h1 color="red">No hay nada aun</h1>
+</ng-template>
+

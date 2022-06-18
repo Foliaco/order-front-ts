@@ -1,0 +1,50 @@
+.grid-main{
+  padding:20px;
+  display:flex;
+  gap:20px;
+}
+.reload{
+  padding:10px;
+}
+button{
+  padding:10px 20px;
+}
+.card{
+  width:300px;
+  height:300px;
+  border-radius:10px;
+  border:2px solid var(--sombra);
+  box-shadow:4px 4px 6px var(--sombra);
+  display:flex;
+
+  justify-content:space-between;
+  align-items:center;
+  flex-direction:column;
+  padding:30px;
+}
+.card:hover{
+    transform:scale(0.9);
+    cursor:pointer;
+}
+.card h3{
+  text-align:center;
+  margin-bottom:10px;
+}
+.card img{
+  margin-top:10px;
+  display:block;
+  margin:auto;
+  width:50%;
+}
+.card button{
+  width:100%
+}
+.body{
+  width:100%;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+p{
+  padding-top:10px;
+  font-weight: bold;
+}

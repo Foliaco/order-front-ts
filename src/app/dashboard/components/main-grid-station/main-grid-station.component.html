@@ -1,0 +1,21 @@
+<div class="reload">
+  <button (click)="fillStation()"><span>Recargar</span></button>
+</div>
+<div class="grid-main" *ngIf="stations.length!=0; else noHay">
+
+  <div class="card"  *ngFor="let station of stations">
+    <div class="crad-header">
+      <h3>{{station.name}}</h3>
+      <img src="../../../../assets/images/ubicacion.png" />
+      <p>Direccion {{station.address}}</p>
+    </div>
+    <div class="body">
+      <button (click)="getPage('main/bussines/station',station.idStation)" ><span>Ver</span></button>
+      <button (click)="getPage('main/bussines/master-bussines/',station.idStation)"><span>Editar</span></button>
+    </div>
+  </div>
+
+</div>
+<ng-template #noHay>
+  <h1 color="red">No hay nada aun</h1>
+</ng-template>

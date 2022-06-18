@@ -1,0 +1,106 @@
+.document{
+  width:95%;
+  margin:30px auto;
+  border:0.2px solid var(--sombra);
+  padding:10px;
+  margin-bottom:50px;
+}
+.header-doc{
+  min-height:200px;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-doc img{
+  display:block;
+  margin:auto;
+  width:100px;
+}
+.header-doc .center{
+  text-align:center;
+}
+.header-doc .center h3{
+  line-height:2;
+}
+.header-doc .right h3{
+  margin-bottom:10px;
+}
+.header-doc .right h3{
+  color:var(--primary);
+  text-align:center;
+}
+.header-doc .right h5{
+  color:var(--primary);
+  margin-top:30px;
+  text-align:center;
+  margin-bottom:20px;
+}
+.header-doc .left h2{
+  text-align:center;
+}
+.medium{
+  border:0.2px solid var(--sombra);
+}
+.medium h3{
+  width:100%;
+  color:var(--primary);
+  background-color:var(--backgroundSombra);
+  text-align:center;
+  padding:7px 0px;
+}
+.medium-down{
+  display:flex;
+  justify-content:space-between;
+  padding:10px;
+}
+.medium-down ul{
+  list-style:none;
+}
+.medium-down ul li{
+  padding:5px;
+}
+table{
+  border:0.2px solid var(--sombra);
+  width:100%;
+}
+table tr{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  justify-items:center;
+  align-items:center;
+  padding:4px;
+}
+table tbody tr:hover{
+  background-color:var(--primary);
+}
+table tbody tr:hover td{
+  color:var(--white);
+}
+table th{
+  display:block;
+  margin-bottom:20px;
+  text-align:center;
+}
+tfoot{
+  display:block;
+  margin-top:200px;
+  background-color:var(--backgroundSombra)
+}
+tfoot tr{
+  padding:20px;
+}
+.OTROS{
+  border:0.8px solid var(--edit);
+}
+.OTROS:hover{
+  background-color:var(--edit)!important;
+}
+/* table thead tr th{
+  font-size:17px;
+}
+table tbody tr td{
+  text-align:center;
+}
+.tr-body{
+  margin-top:30px;
+} */

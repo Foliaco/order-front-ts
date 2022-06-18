@@ -1,0 +1,16 @@
+<header class="bar-menu">
+  <h1 (click)="getPage('main')">Veneplast Orders</h1>
+
+  <ul  >
+    <li *ngFor="let n of nav">
+      <a (click)="getPage(n.url)">{{n.name}}</a>
+    </li>
+    <li>
+      <a (click)="exit();">Salir</a>
+    </li>
+  </ul>
+</header>
+<div>
+  <h2 class="names">{{nombre}}</h2>
+  <h3 class="names">{{rol}}</h3>
+</div>

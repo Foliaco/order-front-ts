@@ -1,0 +1,69 @@
+<app-bar-menu-docs></app-bar-menu-docs>
+<div class="main">
+
+  <div class="search">
+    <input type="text" name="document_id" [(ngModel)]="Document_id" />
+    <button><span><img src="/assets/images/buscar.png" alt=""></span></button>
+
+    <div class="tipo_doc">
+      <select name="tipo_doc" [(ngModel)]="TypeDoc" id="">
+        <option value="TODO">Todos los documentos</option>
+        <option value="OC">Ordenes de Compras</option>
+        <option value="OCA">Ordenes de Compras Aceptadas</option>
+        <option value="COD">Ordenes de Compras Denegada</option>
+        <option value="SOLI">Solicitudes Internas</option>
+        <option value="SOLIA">Solicitudes Internas Aceptadas</option>
+        <option value="SOLID">Solicitudes Internas Denegadas</option>
+        <option value="GUAD">Documentos Guardados</option>
+      </select>
+      <button><span><img src="/assets/images/filter-filled-tool-symbol.png" alt=""></span></button>
+    </div>
+
+    <div class="time_doc grid">
+      <div class="date-group grid tr-2">
+        <p class="mx-2">Inicial</p>
+        <input type="date" name="inicial" #initial>
+      </div>
+      <div class="date-group grid tr-2">
+        <p class="mx-2">Final</p>
+        <input type="date" name="finial" #initial>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+<div class="list-header">
+  <table>
+    <thead>
+      <tr style="display:grid;">
+        <th>Numero de Documento</th>
+        <th>Tipo Documento</th>
+        <th>Fecha de Creaccion</th>
+        <th>Ultima Edicion</th>
+        <th>Area</th>
+        <th>Sub Valor</th>
+        <th>Valor Iva</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let header of HeaderDocs" (click)="selectDocument($event,header)" class="{{header.TypeDocumentsCO.code}} {{header.status}} ">
+        <td>{{header.TypeDocumentsCO.code+'000'+header.count}}</td>
+        <td>{{header.TypeDocumentsCO.name}}</td>
+        <td>{{header.createdAt|date}}</td>
+        <td>{{header.updatedAt|date}}</td>
+        <td>{{header.Dependecy.name}}</td>
+        <td>{{header.subValue}}</td>
+        <td>{{header.iva}}</td>
+        <td>{{header.value}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-documents-view [buttons]="buttons" [DocumentSelect]="DocumentSelect" *ngIf="DocumentSelect!==undefined;else NoHay"></app-documents-view>
+
+<ng-template #NoHay>
+  <h3 class="h3-info">El documento los veras aqui</h3>
+</ng-template>

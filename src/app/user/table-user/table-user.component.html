@@ -1,0 +1,35 @@
+<div [ngClass]="{'hidden':users.length===0}" class="users">
+  <div class="header-search">
+    <h4>Resultado de busquedas: {{users.length}}</h4>
+  </div>
+  <table class="table">
+    <thead>
+      <tr class="tr-10">
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Identificacion</th>
+        <th>Telefono</th>
+        <th>Correo</th>
+        <th>Usuario</th>
+        <th>Empresa</th>
+        <th>Sede</th>
+        <th>Area</th>
+        <th>Activo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="tr-10" *ngFor="let user of users" (click)="fillPerson(user)" >
+        <td>{{user.names}}</td>
+        <td>{{user.lastnames}}</td>
+        <td>{{user.document}}</td>
+        <td>{{user.phone}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.user.username}}</td>
+        <td>{{user.Bussine.name}}</td>
+        <td>{{user.Station.name}}</td>
+        <td>{{user.Dependecy.name}}</td>
+        <td class="flex center-h"><div class="close {{user.status}}"></div></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

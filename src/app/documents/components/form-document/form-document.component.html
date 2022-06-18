@@ -1,0 +1,137 @@
+<app-bar-menu-docs></app-bar-menu-docs>
+<div class="form-document-content" >
+  <div class="header-form" *ngIf="!edit; else sede_else">
+    <h2>Creaccion de documento</h2>
+    <div class="form-control" >
+      <select name="station" #sede_select (change)="getDependeciesByIdUser($event)" id="station">
+        <option *ngFor="let station of stationDoc" value="{{station.idStation}}">{{station.name}}</option>
+      </select>
+    </div>
+    <div class="form-control-sede">
+      <select name="sede" #dependecies_select id="sede">
+        <option *ngFor="let dep of dependeciesDoc" value="{{dep.idDependecie}}">{{dep.name}}</option>
+      </select>
+    </div>
+    <div class="search">
+      <input type="text" name="search" placeholder="Busque un producto" [(ngModel)]="name">
+      <button (click)="searchProduct()" ><span><img src="/assets/images/buscar.png" alt=""></span></button>
+    </div>
+    </div>
+  <ng-template #sede_else  >
+    <div class="header-form">
+    <h2>Edicion de Documento</h2>
+    <div class="form-control" >
+      <h2>{{station_name}}</h2>
+    </div>
+    <div class="form-control-sede">
+      <h2>{{sede_name}}</h2>
+    </div>
+    <div class="search">
+      <input type="text" name="search" placeholder="Busque un producto" [(ngModel)]="name">
+      <button (click)="searchProduct()" ><span><img src="/assets/images/buscar.png" alt=""></span></button>
+    </div>
+  </div>
+  </ng-template>
+  <form class="doct-form">
+      <div class="form-control" *ngIf="!edit;else edit_type_doc">
+        <label for="type-doc">Tipo Documento</label>
+        <select #typedoc_select>
+          <option *ngFor="let type of typeDOcs" value="{{type.idTypeDocumentOC}}" >{{type.name}}</option>
+        </select>
+      </div>
+      <ng-template #edit_type_doc >
+        <div class="form-control">
+          <label for="type-doc">Tipo Documento</label>
+          <select #typedoc_select_edit (change)="selectedType($event)">
+            <option  selected value="{{typDoc_edit.idTypeDocumentOC}}" >{{typDoc_edit.name}}</option>
+            <option *ngFor="let type of typeDOcs" value="{{type.idTypeDocumentOC}}" >{{type.name}}</option>
+          </select>
+        </div>
+      </ng-template>
+      <div class="form-control">
+        <label for="producto_name">Nombre</label>
+          <input type="text" name="producto_name" disabled="{{selectedProduct.code==='OTROS'?false:true}}" placeholder="Nombre del producto" [(ngModel)]="selectedProduct.name" />
+      </div>
+      <div class="form-control">
+        <label for="cantidad">Cantidad</label>
+        <input type="number" name="cantidad" placeholder="Cantidad" appOnlyNumber [(ngModel)]="selectedProduct.count">
+      </div>
+      <div class="form-control">
+        <label for="producto_value">Valor Bruto</label>
+          <input type="number" disabled="{{selectedProduct.code==='OTROS'?false:true}}" name="producto_value" placeholder="Precio" [(ngModel)]="selectedProduct.subValue" />
+      </div>
+      <div class="form-control">
+        <label for="producto_IVA">Iva</label>
+        <input type="number" disabled="{{selectedProduct.code==='OTROS'?false:true}}" name="producto_IVA" placeholder="Precio Iva" [(ngModel)]="selectedProduct.iva"/>
+      </div>
+      <div class="form-control">
+        <label for="producto_PRECIO_IVA">Precio con iva</label>
+        <input type="number" disabled="{{selectedProduct.code==='OTROS'?false:true}}" name="producto_PRECIO_IVA" placeholder="Precio + Iva" [(ngModel)]="selectedProduct.value"/>
+      </div>
+      <div class="form-control">
+        <button (click)="setProductInDetail()" ><span>+</span></button>
+      </div>
+      <div class="form-control">
+        <button (click)="clearProduct(false)" ><span>Limpiar</span></button>
+      </div>
+      <div class="form-control">
+        <button (click)="clearProduct(true)" ><span>Limpiar Todo</span></button>
+      </div>
+  </form>
+</div>
+
+<div class="table-products">
+  <div class="table-product-header center-h between">
+    <h2>Tus Productos</h2>
+    <h3>Total productos {{detailsProduct.length}}</h3>
+    <h3>Total iva {{totalIva | currency:'COP':'$':'2.2'}}</h3>
+    <h3>Sub total {{ subValue| currency:'COP':'$':'2.2'}}</h3>
+    <h3>Total {{value | currency:'COP':'$':'2.2'}}</h3>
+  </div>
+  <table class="table">
+    <thead>
+      <tr class="tr-9">
+        <th>Codigo</th>
+        <th>Nombre</th>
+        <th>Descripcion</th>
+        <th>Cantidad</th>
+        <th>Valor</th>
+        <th>Sub Valor</th>
+        <th>Iva</th>
+        <th>Valor Total</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of detailsProduct" class="tr-9">
+        <td>{{product.code}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product._references||'Sin referencia'}}</td>
+        <td>{{product.count}}</td>
+        <td>{{parse(product.value.toString()) | currency:'COP':'$':'2.2'}}</td>
+        <td>{{parse(product.subValue.toString()) * parse(product.count.toString()) | currency:'COP':'$':'2.2'}}</td>
+        <td>{{parse(product.iva.toString()) * parse(product.count.toString()) | currency:'COP':'$':'2.2'}}</td>
+        <td>{{parse(product.count.toString()) * parse(product.value.toString()) | currency:'COP':'$':'2.2'}}</td>
+        <td class="center-h between">
+          <div class="close edit" (click)="editProduct(product)" ><img class="img" src="/assets/images/edit.png" alt=""></div>
+          <div class="close danger" (click)="deleteProduct(product)"><img class="img" src="/assets/images/delete.png" alt=""></div>
+        </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="form-area">
+    <textarea [(ngModel)]="observacion" cols="30" rows="10" (input)="saveObservacion($event)" placeholder="Escribe aqui una observacion"></textarea>
+  </div>
+  <div class="buttons" *ngIf="!edit;else edit_button">
+    <button (click)="sendDocument()"><span>Enviar</span></button>
+  </div>
+
+  <ng-template #edit_button>
+    <div class="buttons" >
+      <button class="edit-border" (click)="editDocument()"><span class="edit-txt">Editar</span></button>
+    </div>
+  </ng-template>
+</div>
+
+
+<app-grid-product  [products]="products" [visable]="visable" (show)="close($event)" (productSelected)="fillProduct($event)" ></app-grid-product>

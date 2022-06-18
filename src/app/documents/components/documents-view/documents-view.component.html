@@ -1,0 +1,75 @@
+<app-buttons-options [TypeDoc]="DocumentSelect.TypeDocumentsCO" [buttons]="buttons" [Document]="DocumentSelect"></app-buttons-options>
+<div class="document" id="content_document">
+    <div class="header-doc">
+      <div class="left">
+        <img src="/assets/images/icon.jpg" alt="">
+        <h2>Veneplast LTDA</h2>
+      </div>
+      <div class="center">
+        <h3>Veneplast L.T.D.A<br/>Nit: 900019737-8 <br/>Cartagena, C.C Bazurtico Local 8 y 9</h3>
+      </div>
+      <div class="right">
+          <h4>Fecha : {{DocumentSelect.createdAt| date:'short'}}</h4>
+          <h4>Ultima modificacion : {{DocumentSelect.updatedAt| date:'short'}}</h4>
+          <h5>{{DocumentSelect.TypeDocumentsCO.name}}</h5>
+          <h3>N° {{DocumentSelect.TypeDocumentsCO.code+'000'+DocumentSelect.count}}</h3>
+      </div>
+    </div>
+
+    <div class="medium">
+      <h3>INFORMACION CLIENTE</h3>
+      <div class="medium-down">
+          <ul>
+            <li>Nit <strong>{{DocumentSelect.Station.nit}}</strong></li>
+            <li>Dirreccion <strong>{{DocumentSelect.Station.address}}</strong></li>
+            <li>Area: <strong>{{DocumentSelect.Dependecy.name}}</strong></li>
+            <li>Sede: <strong>{{DocumentSelect.Station.name}}</strong></li>
+          </ul>
+          <ul>
+            <li>Usuario: <strong>{{DocumentSelect.user.username}}</strong></li>
+          </ul>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr class="tr-8">
+          <th>Codigo</th>
+          <th>Nombre</th>
+          <th>Descripcion</th>
+          <th>Cantidad</th>
+          <th>Valor</th>
+          <th>Sub Valor</th>
+          <th>Iva</th>
+          <th>Valor Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="tr-body tr-8 {{product.code}}" *ngFor="let product of json.parse(DocumentSelect.DetailsDocs[0].DetailsDocModel)">
+            <td>{{product.code}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product._references||'Sin referencia'}}</td>
+            <td>{{product.count}}</td>
+            <td>{{parse(product.value.toString()) | currency:'COP':'$':'2.2'}}</td>
+            <td>{{parse(product.subValue.toString()) * parse(product.count.toString()) | currency:'COP':'$':'2.2'}}</td>
+            <td>{{parse(product.iva.toString()) * parse(product.count.toString()) | currency:'COP':'$':'2.2'}}</td>
+            <td>{{parse(product.count.toString()) * parse(product.value.toString()) | currency:'COP':'$':'2.2'}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>VALOR IVA</th>
+          <th>Sub Valor</th>
+          <th>Valor Total</th>
+        </tr>
+        <tr>
+          <td>{{DocumentSelect.iva | currency:'COP':'$':'2.2'}}</td>
+          <td>{{DocumentSelect.subValue | currency:'COP':'$':'2.2'}}</td>
+          <td>{{DocumentSelect.value | currency:'COP':'$':'2.2'}}</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div style="margin-top:40px;padding:10px;" class="tr-1">
+      <strong>Observaciones:</strong> <p>{{DocumentSelect.observacion}}</p>
+  </div>
+</div>

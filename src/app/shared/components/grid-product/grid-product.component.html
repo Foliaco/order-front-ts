@@ -1,0 +1,33 @@
+<div class="back center-v {{visable}}">
+  <div class="front white" >
+    <div class="header-front center-h between">
+      <h4>Productos con relaciona a <strong>texto</strong></h4>
+      <div class="close bubble primary" (click)="open($event)" ><img class="img" src="/assets/images/maximize.png" alt=""></div>
+      <div class="close danger bubble" (click)="close()"></div>
+    </div>
+    <table class="table">
+      <thead>
+        <tr class="tr-7">
+          <th>Nombre</th>
+          <th>Referencia</th>
+          <th>Codigo</th>
+          <th>Marca</th>
+          <th>Sub Valor</th>
+        <th>Iva</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody class="tbody">
+      <tr *ngFor="let product of products" class="tr-7" (click)="SelectedProduct(product)">
+        <td>{{product.name}}</td>
+        <td>{{product._references}}</td>
+        <td>{{product.code}}</td>
+        <td>{{product.Marca.name}}</td>
+        <td>{{product.subValue}}</td>
+        <td>{{product.iva}}</td>
+        <td>{{product.value}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>

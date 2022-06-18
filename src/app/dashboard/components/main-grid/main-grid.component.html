@@ -1,0 +1,8 @@
+<div class="reload">
+  <button (click)="fillBussines()"><span>Recargar</span></button>
+</div>
+<div class="grid-main">
+  <app-grid *ngFor="let bussine of bussines"
+    [bussine]="bussine"
+  ></app-grid>
+</div>

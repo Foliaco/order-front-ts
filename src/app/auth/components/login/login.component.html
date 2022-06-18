@@ -1,0 +1,21 @@
+<div class="fondo">
+  <app-msg-box [Log]="Log" [Session]="Session" [Msj]="Msj">hola</app-msg-box>
+  <form [formGroup]="formUser">
+    <h2>Veneplast Orders</h2>
+    <div>
+      <input
+      type="text"
+      formControlName="username"
+      name="username"
+      placeholder="Username"
+      [class.is-invalid]="formUser.get('username')?.touched && formUser.get('username')?.invalid"
+      />
+    </div>
+    <div>
+      <input formControlName="password" type="password" name="password" placeholder="Password"
+      [class.is-invalid]="formUser.get('password')?.touched && formUser.get('password')?.invalid"
+      />
+    </div>
+    <button (click)="getLogin()"><span>Login</span></button>
+  </form>
+</div>

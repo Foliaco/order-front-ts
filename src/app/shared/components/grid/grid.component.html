@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="crad-header">
+    <h3>{{bussine.name}}</h3>
+    <img src="../../../../assets/images/edificio.png" />
+    <p>Nit: {{bussine.nit}}</p>
+  </div>
+  <div class="body">
+    <button (click)="getPage('main/bussines',bussine.idBussine)" ><span>Ver</span></button>
+    <button (click)="getPage('main/bussines/master-bussines/',bussine.idBussine)"><span>Editar</span></button>
+  </div>
+</div>

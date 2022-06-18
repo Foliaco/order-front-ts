@@ -1,0 +1,19 @@
+<div class="back-squared {{Log}}">
+  <div class="squared" *ngIf="!Session; else TrueSession" >
+        <div class="icon">
+          <div class="svg">!</div>
+          <p>{{Msj}}</p>
+        </div>
+        <div class="buttons">
+          <button (click)="hiddenMSG()"><span>Cerrar</span></button>
+        </div>
+    </div>
+    <ng-template #TrueSession>
+      <div class="squared" >
+      <div class="icon" >
+        <div class="svg" style="background:var(--primary)">:)</div>
+        <p>Bienvenido</p>
+      </div>
+    </div>
+    </ng-template>
+</div>

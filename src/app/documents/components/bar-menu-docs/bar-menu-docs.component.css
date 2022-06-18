@@ -1,0 +1,35 @@
+header{
+  width:100%;
+  padding:10px;
+  background-color:var(--primary);
+  box-shadow:4px 4px 6px var(--sombra);
+  display:flex;
+  justify-content:space-between;
+}
+header h1{
+  color:var(--white);
+  cursor:pointer;
+}
+header h1:hover{
+  transform:scale(0.9)
+}
+header ul{
+  list-style:none;
+  display:flex;
+  align-items: center;
+  justify-content:space-between;
+}
+header ul li{
+  padding:5px 10px;
+}
+header ul li a{
+  display:block;
+  text-align:center;
+  font-size:15px;
+  cursor :pointer;
+  color:var(--white);
+}
+header ul li:hover a{
+  display:block;
+  transform: translateY(20%);
+}

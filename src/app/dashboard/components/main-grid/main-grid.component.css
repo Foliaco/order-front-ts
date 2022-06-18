@@ -1,0 +1,11 @@
+.grid-main{
+  padding:20px;
+  display:flex;
+  gap:20px;
+}
+.reload{
+  padding:10px;
+}
+button{
+  padding:10px 20px;
+}
