@@ -1,0 +1,41 @@
+<app-navbar-bussines></app-navbar-bussines>
+
+<div class="list grid tr-3">
+  <div class="left">
+    <h4>Empresas</h4>
+    <ul>
+      <li *ngFor="let l of ['abcde','JHD','dj']">Lorem Ipsum is Lorem</li>
+    </ul>
+  </div>
+  <div class="center">
+    <h4>Empresas</h4>
+    <ul>
+      <li *ngFor="let l of ['abcde','JHD','dj']">Lorem Ipsum is Lorem</li>
+    </ul>
+  </div>
+  <div class="right">
+    <h4>Empresas</h4>
+    <ul>
+      <li *ngFor="let l of ['abcde','JHD','dj']">Lorem Ipsum is Lorem</li>
+    </ul>
+  </div>
+</div>
+
+<div class="back hidden">
+  <div class="front">
+      <div class="header">
+        <h2>Creacion de Sedes y Areas</h2>
+        <div class="close danger"></div>
+      </div>
+
+      <div class="form-control">
+          <select name="bussines" id="">
+            <option *ngFor="let bus of bussines" value="{{bus.idBussine}}">{{bus.name}}</option>
+          </select>
+          <input name="sede"/>
+      </div>
+
+  </div>
+</div>
+
+<!-- !Pendiente terminar -->

@@ -27,8 +27,12 @@ export class DocumentsService {
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
-  GetDocumentByDependecies(idPerson:string,idDependecies:number,token:string):Observable<IResponseHeaderDocument>{
-    return this.http.get<IResponseHeaderDocument>(`${environment.apiURL}document/${idPerson}/${idDependecies}`,{
+  GetDocumentByDependecies(idPerson:string,idDependecies:number,token:string,doc:string='none',dateInit:string,dateEnd:string,typeDocId:string):Observable<IResponseHeaderDocument>{
+    return this.http.post<IResponseHeaderDocument>(`${environment.apiURL}document/${idPerson}/${idDependecies}/${doc}`,{
+      fechaInicial:dateInit,
+      fechaFinal:dateEnd,
+      typeDocId:typeDocId
+    },{
       headers:{'x-access':token}
     }).
     pipe(

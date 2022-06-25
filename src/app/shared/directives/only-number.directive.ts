@@ -7,8 +7,8 @@ export class OnlyNumberDirective {
 
   constructor(private readonly elRef:ElementRef) { }
   @HostListener('input',['$event'])
-  onChangeInput(event:Event):void{
-    //console.log(this.elRef.nativeElement.value)
+  onInput(event:Event):void{
+    console.log(this.elRef.nativeElement.value)
     const numbers=/[^0-9]*/g;
 
     const init:string=this.elRef.nativeElement.value;

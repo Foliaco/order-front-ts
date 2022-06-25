@@ -7,6 +7,8 @@ import { BarMenuDocsComponent } from './components/bar-menu-docs/bar-menu-docs.c
 import { FormDocumentComponent } from './components/form-document/form-document.component';
 import { GridProductComponent } from '../shared/components/grid-product/grid-product.component';
 import { ButtonsOptionsComponent } from './components/buttons-options/buttons-options.component';
+import { OnlyNumberDirective } from '../shared/directives/only-number.directive';
+import { LoadingComponent } from '../shared/components/loading/loading.component';
 
 
 
@@ -17,11 +19,14 @@ import { ButtonsOptionsComponent } from './components/buttons-options/buttons-op
     BarMenuDocsComponent,
     FormDocumentComponent,
     GridProductComponent,
-    ButtonsOptionsComponent
+    ButtonsOptionsComponent,
+    LoadingComponent,
+    OnlyNumberDirective
   ],
   imports: [
     CommonModule,
-    FormsModule
-  ]
+    FormsModule,
+  ],
+  //exports:[LoadingComponent]
 })
 export class DocumentsModule { }

@@ -5,15 +5,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
+import { BussinesModule } from './bussines/bussines.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { DocumentsModule } from './documents/documents.module';
-import { OnlyNumberDirective } from './shared/directives/only-number.directive';
 import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    OnlyNumberDirective
+    AppComponent
   ],
   imports: [
     AppRoutingModule,
@@ -21,6 +20,7 @@ import { UserModule } from './user/user.module';
     BrowserModule,
     AuthModule,
     DashboardModule,
+    BussinesModule,
     DocumentsModule,
     UserModule
   ],

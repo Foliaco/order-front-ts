@@ -34,7 +34,9 @@ export class BarMenuComponent implements OnInit {
   ngOnInit(): void {
     this.rol=this.Lc.get('rol');
     this.nombre=this.Lc.get('names').toUpperCase()+' '+this.Lc.get('lastnames').toUpperCase();
-    if(this.rol==null) return;
+    if(this.rol=='') {
+      this.exit();
+    };
 
     let menus=this.Menus.getMenu(this.rol)
     if(menus===undefined) return;

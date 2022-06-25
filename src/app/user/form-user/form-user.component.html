@@ -2,7 +2,7 @@
   <div class="header-form">
     <h2>Maestro de usuarios</h2>
     <div class="search">
-      <input type="text" name="search" [(ngModel)]="name" placeholder="Busque un producto" (keydown)="enter($event)" >
+      <input type="text" name="search"  specialCaracteres [(ngModel)]="name" placeholder="Busque una persona" (keydown)="enter($event)" />
       <button (click)="searchPerson()" ><span><img src="/assets/images/buscar.png" alt=""></span></button>
     </div>
     <div class="options" >
@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <app-table-user [users]="users"></app-table-user>
+  <app-table-user [users]="users" (InputPerson)="fillPerson($event)" ></app-table-user>
 
   <form class="form-user form tr-5" (submit)="sendPerson($event)">
     <div class="state_user">
@@ -49,20 +49,20 @@
     </div>
 
     <div class="control-form-user">
-      <label for="names">Correo</label>
-      <input type="email" name="email" id="email" placeholder="example@institucion.com.co"/>
+      <label for="names">Correo  <p [ngClass]="{'invalid':!check.check}">{{check.msj}}</p></label>
+      <input type="email" name="email" id="email" placeholder="example@institucion.com.co" (input)="verifyText('email',$event)" />
     </div>
 
     <div class="control-form-user">
       <label for="phone">Telefono
       </label>
-      <input type="phone" name="phone" id="phone" placeholder="Sin espacios por favor"/>
+      <input type="number" name="phone" id="phone" placeholder="Sin espacios por favor"/>
     </div>
 
     <div class="control-form-user">
-      <label for="phone">N° Identidad
+      <label for="document">N° Identidad
       </label>
-      <input type="document" name="document" id="document" placeholder="N° identidad"/>
+      <input type="number" name="document" id="document" placeholder="N° identidad"/>
     </div>
 
     <div class="control-form-user">
@@ -112,5 +112,170 @@
     </div>
     <button class="primary"><span class="white-txt">Guardar</span></button>
   </form>
+
+  <!-- <ng-template #editForm>
+    <form class="form-user form tr-5" (submit)="sendPerson($event)">
+      <div class="state_user">
+        <p>ACTIVO</p>
+        <div class="state {{this.states.className}}" (click)="changeState()">
+          <input type="checkbox" name="state" value={{this.states.state}}>
+        </div>
+      </div>
+      <div class="control-form-user">
+        <label for="names">Nombres</label>
+        <input type="text" name="names" id="names" [(ngModel)]="userEdit.names" placeholder="Nombres de la persona"/>
+      </div>
+
+      <div class="control-form-user">
+        <label for="lastnames">Apellidos</label>
+        <input type="text" name="lastnames" id="lastnames" [(ngModel)]="userEdit.lastnames" placeholder="Apellidos de la persona"/>
+      </div>
+
+      <div class="control-form-user">
+        <label for="username">User</label>
+        <input type="text" name="username" id="username" [(ngModel)]="userEdit.username" placeholder="Usuario"/>
+      </div>
+
+      <div class="control-form-user">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" [(ngModel)]="newPassword" placeholder="*********"/>
+      </div>
+
+      <div class="control-form-user">
+        <label for="names">Correo  <p [ngClass]="{'invalid':!check.check}">{{check.msj}}</p></label>
+        <input type="email" name="email" id="email" placeholder="example@institucion.com.co" [(ngModel)]="userEdit.email" (input)="verifyText('email',$event)" />
+      </div>
+
+      <div class="control-form-user">
+        <label for="phone">Telefono
+        </label>
+        <input type="number" name="phone" id="phone" [(ngModel)]="userEdit.phone" placeholder="Sin espacios por favor"/>
+      </div>
+
+      <div class="control-form-user">
+        <label for="document">N° Identidad
+        </label>
+        <input type="number" name="document" id="document" [(ngModel)]="userEdit.document" placeholder="N° identidad"/>
+      </div>
+
+      <div class="control-form-user">
+        <label for="idTypeDocument">Tipo Identidad
+        </label>
+        <select name="idTypeDocument">
+          <option value="{{userEdit.idTypeDocument}}">{{typeDocumentEdit.name}} - origen</option>
+          <option *ngFor="let typeDocument of typeDocuments" value="{{typeDocument.idTypeDocument}}" >{{typeDocument.name}}</option>
+        </select>
+      </div>
+
+      <div class="control-form-user">
+        <label for="bussines">Empresa
+        </label>
+        <select name="bussines"  (click)="setStation($event)">
+          <option value="{{userEdit.idBussine}}">{{bussinesEdit.name}} - origen</option>
+          <option *ngFor="let bussines of _bussines" value="{{bussines.idBussine}}">{{bussines.name}}</option>
+        </select>
+      </div>
+
+      <div class="control-form-user">
+        <label for="station">Sede
+        </label>
+        <select name="station" (click)="setDependencies($event)" *ngIf="station.length!==0; else nothing">
+          <option value="{{userEdit.idStation}}">{{stationEdit.name}} - origen</option>
+          <option name="station" *ngFor="let _station of station" value="{{_station.idStation}}" >{{_station.name}}</option>
+        </select>
+        <ng-template #nothing>
+            <input type="text" disabled value="No hay una sede aun">
+        </ng-template>
+      </div>
+
+      <div class="control-form-user">
+        <label for="dependencies">Area
+        </label>
+        <select name="dependencies">
+          <option value="{{userEdit.idDependecie}}">{{depEdit.name}} - origen</option>
+          <option  *ngFor="let dep of dependecies" value="{{dep.idDependecie}}" >{{dep.name}}</option>
+        </select>
+      </div>
+
+      <div class="control-form-user">
+        <label for="idRol">Rol
+        </label>
+        <select name="idRol" (click)="setDescripcion($event)">
+          <option value="{{rolEdit.idRol}}">{{rolEdit.name}} - origen</option>
+          <option  *ngFor="let _rol of rol" value="{{_rol.idRol}}" >{{_rol.detalle}}</option>
+        </select>
+      </div>
+      <div class="control-form-user">
+        <p>{{description}}</p>
+      </div>
+      <button class="edit edit-border"><span class="white-txt">Guardar Cambios</span></button>
+    </form>
+  </ng-template> -->
+
+  <div class="back {{visible}}">
+    <div class="front">
+      <div class="close danger" (click)="close()"></div>
+      <div class="person grid tr-4">
+          <input type="text" name="names" [(ngModel)]="userEdit.names" placeholder="Nombre de usuario"/>
+          <input type="text" name="lastnames" [(ngModel)]="userEdit.lastnames" placeholder="Apellidos de usuario"/>
+          <input type="number" name="document" [(ngModel)]="userEdit.document" placeholder="Documento de usuario"/>
+          <input type="text" name="document" [(ngModel)]="userEdit.email" placeholder="Documento de usuario"/>
+          <div class="check-box">
+            <strong>Tipo Documento</strong>
+            <div class="sub-check">
+              <label for="document" *ngFor="let doc of typeDocuments">
+                {{doc.name}}
+                <input type="radio" name="document" [checked]="doc.idTypeDocument===userEdit.idTypeDocument" value="{{doc.idTypeDocument}}" (click)="changeTypeDoc(doc.idTypeDocument)"/>
+              </label>
+            </div>
+          </div>
+          <div class="check-box">
+            <strong>Empresa</strong>
+            <div class="sub-check">
+              <label for="bussines" *ngFor="let bus of _bussines">
+                {{bus.name}}
+                <input type="radio" [checked]="(bus.idBussine===userEdit.idBussine)" name="bussines" (click)="setStation(undefined,bus.idBussine)" (click)="changeBussine(bus.idBussine)" value="{{bus.idBussine}}"/>
+              </label>
+            </div>
+          </div>
+          <div class="check-box">
+            <strong>Sede</strong>
+            <div class="sub-check">
+              <label for="station" (change)="setDependencies($event)" (click)="changeStation(_station.idStation)" *ngFor="let _station of station">
+                {{_station.name}}
+                <input type="radio" [checked]="_station.idStation===userEdit.idStation" name="station" value="{{_station.idStation}}"/>
+              </label>
+            </div>
+          </div>
+          <div class="check-box">
+            <strong>Area</strong>
+            <div class="sub-check">
+                <label for="dependecie" style="display:flex" *ngFor="let _dep of dependecies">
+                  {{_dep.name}}
+                  <input type="radio" [checked]="_dep.idDependecie===userEdit.idDependecie" (click)="changeDependencie(_dep.idDependecie)" name="dependecie" value="{{_dep.idDependecie}}"/>
+                </label>
+            </div>
+          </div>
+          <div class="check-box">
+            <strong>Rol</strong>
+              <select name="area">
+                <option *ngFor="let _rol of rol" (click)="changeRol(_rol.idRol)" value="{{_rol.idRol}}" [selected]="_rol.idRol===userEdit.rol" >{{_rol.detalle}}</option>
+              </select>
+              <div class="check-box flex between center">
+                ACTIVO
+                <div class="close-1 close {{userEdit.status===false?'danger':'true'}}" (click)="changeStateEdit(userEdit.status)">
+                  <input type="checkbox" class="input-check" [checked]="userEdit.status" />
+                </div>
+              </div>
+          </div>
+          <div class="check-box">
+            <input type="text" name="username" [(ngModel)]="userEdit.username" placeholder="Username"/>
+            <input type="password" name="password" [(ngModel)]="newPassword" placeholder="password"/>
+            <button class="primary" (click)="changePass()"><span class="white-txt" style="font-size:12px">Restablecer contraseña</span></button>
+          </div>
+          <button class="edit edit-border" (click)="editPerson()"><span class="white-txt">Guardar Cambios</span></button>
+      </div>
+    </div>
+  </div>
 
 </div>

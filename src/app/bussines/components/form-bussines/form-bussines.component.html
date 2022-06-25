@@ -1,0 +1,72 @@
+<app-navbar-bussines></app-navbar-bussines>
+<app-loading-bussines [hidden]="hidden"></app-loading-bussines>
+<div class="header center-h">
+<button style="margin:30px auto" (click)="showForm()"><span>+ Agregar Empresa</span></button>
+<button style="margin:30px auto" (click)="getPage('dashboard/master-stations')"><span>+ Agregar Sede</span></button>
+
+</div>
+<div class="list-bussines">
+  <table class="table">
+      <thead>
+        <tr class="tr-7">
+          <th>Razon Social</th>
+          <th>Nit</th>
+          <th>Correo Electronico</th>
+          <th>Telefono</th>
+          <th>Direccion</th>
+          <th>Fecha de ingreso</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody class="tbody">
+        <tr class="tr-7" *ngFor="let bus of bussines">
+          <td>{{bus.name}}</td>
+          <td>{{bus.nit}}</td>
+          <td>{{bus.email}}</td>
+          <td>{{bus.phone}}</td>
+          <td>{{bus.address}}</td>
+          <td>{{bus.createdAt | date}}</td>
+          <td class="flex center-v" (click)="editBussine(bus)"><img class="img edit bubble" style="width:33px; padding:5px;" src="assets/images/edit.png" alt=""/></td>
+        </tr>
+      </tbody>
+  </table>
+</div>
+
+<div class="back {{hiddenForm}}">
+  <div class="front">
+    <div class="header">
+      <h2>{{edit?'Editar':'Crear'}} Empresa</h2>
+      <h4>{{edit?'Id Empresa: '+bussine.idBussine:null}}</h4>
+      <div class="close danger" (click)="close()"></div>
+    </div>
+
+    <form class="form grid tr-2">
+      <div class="form-control">
+        <label for="name">Razon social</label>
+        <input type="text" [(ngModel)]="bussine.name" name="name" id="" />
+      </div>
+      <div class="form-control">
+        <label for="nit">NIT</label>
+        <input type="number" [(ngModel)]="bussine.nit" name="nit" id="" />
+      </div>
+      <div class="form-control">
+        <label for="email">Correo Electronico</label>
+        <input type="email" [(ngModel)]="bussine.email" name="email" id="" />
+      </div>
+      <div class="form-control">
+        <label for="phone">Telefono</label>
+        <input type="number" [(ngModel)]="bussine.phone" name="phone" id="" />
+      </div>
+      <div class="form-control">
+        <label for="address">Direccion - Principal</label>
+        <input type="text" name="address" [(ngModel)]="bussine.address" id="" />
+      </div>
+
+      <button (click)="sendBussines()" *ngIf="!edit;else btnEdit"><span>Guardar</span></button>
+      <ng-template #btnEdit>
+      <button (click)="updateBussines()" class="edit edit-border"><span class="white-txt">Editar</span></button>
+      </ng-template>
+    </form>
+
+  </div>
+</div>

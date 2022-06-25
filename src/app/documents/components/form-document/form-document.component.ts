@@ -136,13 +136,25 @@ parse=parseInt;
       return;
     }
     let index=this.detailsProduct.findIndex(e=>e.idProduct===this.selectedProduct.idProduct);
-    if(index!=-1){
+    if(index!=-1&&this.selectedProduct.code!=='OTROS'){
       alert("El producto "+this.selectedProduct.name+" ya esta agregado");
       return;
     }
 
+    console.log(this.selectedProduct);
+
+    if(this.selectedProduct.value==0){
+      alert("El precio con iva no puede ser igual a 0");
+      return;
+    }
+
     this.detailsProduct.push(this.selectedProduct)
-    console.log(this.detailsProduct)
+
+    this.lc.set([{key:"details",value:JSON.stringify(this.detailsProduct)}])
+    this.totalIva+=parseInt(this.selectedProduct.iva.toString())*this.selectedProduct.count;
+    this.subValue+=parseInt(this.selectedProduct.subValue.toString())*this.selectedProduct.count;
+    this.value+=parseInt(this.selectedProduct.value.toString())*this.selectedProduct.count;
+
     this.selectedProduct={
       marca:'',
       name:'',
@@ -158,9 +170,6 @@ parse=parseInt;
       updatedAt:new Date,
       count:1
     };
-
-    this.lc.set([{key:"details",value:JSON.stringify(this.detailsProduct)}])
-    this.calc('+');
   }
 
   async verifyMode(){
@@ -177,7 +186,7 @@ parse=parseInt;
     this.typDoc_edit=data.TypeDocumentsCO;
     this.supplier_edit=data.idSupplier;
     this.idDocument_edit=data.idDocument;
-    this.calc('+');
+    this.calc();
     if(typeof(data.idBussine)==='number'){
       this.bussine_edit=data.idBussine;
     }
@@ -298,26 +307,12 @@ parse=parseInt;
     this.detailsProduct=data;
   }
 
-  calc(operator:string){
+  calc(){
     let detail=this.detailsProduct;
     detail.forEach(e=>{
-      if(typeof(e.iva)==="number" || typeof(e.value)==="number" || typeof(e.subValue)==="number"){
-        return;
-      }
-      switch(operator){
-        case '+':
-          this.totalIva=0;
-          this.subValue=0;
-          this.value=0;
-        this.totalIva+=parseInt(e.iva)*e.count;
-        this.subValue+=parseInt(e.subValue)*e.count;
-        this.value+=parseInt(e.value)*e.count;
-        break;
-        case '-':
-          this.totalIva-=parseInt(e.iva)*e.count;
-          this.subValue-=parseInt(e.subValue)*e.count;
-          this.value-=parseInt(e.value)*e.count;
-      }
+        this.totalIva+=parseInt(e.iva.toString())===0?1:parseInt(e.iva.toString())*e.count;
+        this.subValue+=parseInt(e.subValue.toString())===0?1:parseInt(e.subValue.toString())*e.count;
+        this.value+=parseInt(e.value.toString())*e.count;
     })
   }
 
@@ -372,7 +367,7 @@ parse=parseInt;
       },
       error:err=>{
         console.log(err);
-        alert("Error en el servicio")
+        alert("Error en el servicio, por favor intente mas tarde")
       }
     })
   }
@@ -429,7 +424,7 @@ parse=parseInt;
       },
       error:err=>{
         console.log(err);
-        alert("Error en el servicio")
+        alert("Error en el servicio, por favor intente mas tarde")
       }
     })
   }
@@ -443,7 +438,8 @@ parse=parseInt;
     this.verifyData();  //?recupera los datos de un documento si se reincia el naveador
     this.getStationByIdUser();  //?responde las sedes que tiene acceso ese usuario
     this.verifyMode();
-    this.calc('+');
+    this.calc();
+
   }
 
 }

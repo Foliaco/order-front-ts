@@ -1,20 +1,15 @@
 <app-bar-menu-docs></app-bar-menu-docs>
+<app-loading [hidden]="hidden"></app-loading>
 <div class="main">
 
   <div class="search">
-    <input type="text" name="document_id" [(ngModel)]="Document_id" />
-    <button><span><img src="/assets/images/buscar.png" alt=""></span></button>
+    <input type="text" appOnlyNumber name="document_id" (keydown)="enter($event)" [(ngModel)]="Document_id" />
+    <button (click)="setDocuments(Document_id)"><span><img src="/assets/images/buscar.png" alt=""></span></button>
 
     <div class="tipo_doc">
-      <select name="tipo_doc" [(ngModel)]="TypeDoc" id="">
-        <option value="TODO">Todos los documentos</option>
-        <option value="OC">Ordenes de Compras</option>
-        <option value="OCA">Ordenes de Compras Aceptadas</option>
-        <option value="COD">Ordenes de Compras Denegada</option>
-        <option value="SOLI">Solicitudes Internas</option>
-        <option value="SOLIA">Solicitudes Internas Aceptadas</option>
-        <option value="SOLID">Solicitudes Internas Denegadas</option>
-        <option value="GUAD">Documentos Guardados</option>
+      <select name="tipo_doc" (change)="filter($event)" [(ngModel)]="TypeDoc" id="">
+        <option selected value="TODO">Todos los documentos</option>
+        <option *ngFor="let type of typeDocs" value="{{type.idTypeDocumentOC}}">{{type.name}}</option>
       </select>
       <button><span><img src="/assets/images/filter-filled-tool-symbol.png" alt=""></span></button>
     </div>
@@ -22,11 +17,11 @@
     <div class="time_doc grid">
       <div class="date-group grid tr-2">
         <p class="mx-2">Inicial</p>
-        <input type="date" name="inicial" #initial>
+        <input type="date" [(ngModel)]="dateInput.dateInit" (change)="setDateInit($event)" name="inicial" #initial>
       </div>
       <div class="date-group grid tr-2">
         <p class="mx-2">Final</p>
-        <input type="date" name="finial" #initial>
+        <input type="date" [(ngModel)]="dateInput.dateEnd" (change)="setDateEnd($event)" name="finial" #initial>
       </div>
     </div>
 

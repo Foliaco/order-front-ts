@@ -15,8 +15,12 @@ export class GridComponent implements OnInit {
       private router:Router
   ) { }
 
-  getPage(url:string,id:number){
-    this.router.navigate([`${url}/${id}`])
+  getPage(url:string,id?:number){
+    if(id!==undefined){
+      this.router.navigate([`${url}/${id}`])
+      return;
+    }
+    this.router.navigate([`${url}`])
   }
   ngOnInit(): void {
   }

@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
     .subscribe({
       next:e=>{
         try{
-          console.log(e);
           this.Log='active';
           if(e.log===false && e.user===null){
             this.Session=false;

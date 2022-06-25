@@ -43,8 +43,7 @@
         <div class="form-control">
           <label for="type-doc">Tipo Documento</label>
           <select #typedoc_select_edit (change)="selectedType($event)">
-            <option  selected value="{{typDoc_edit.idTypeDocumentOC}}" >{{typDoc_edit.name}}</option>
-            <option *ngFor="let type of typeDOcs" value="{{type.idTypeDocumentOC}}" >{{type.name}}</option>
+            <option *ngFor="let type of typeDOcs" [selected]="type.idTypeDocumentOC===typDoc_edit.idTypeDocumentOC" value="{{type.idTypeDocumentOC}}" >{{type.name}}</option>
           </select>
         </div>
       </ng-template>

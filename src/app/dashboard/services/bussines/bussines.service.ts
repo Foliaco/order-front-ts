@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
+import { IBussines } from 'src/app/auth/interfaces/bussines/Bussines.interfaces';
 import { IPerson } from 'src/app/auth/interfaces/persona/Person.interfaces';
 import { environment } from 'src/environments/environment';
 import { IResponseBussines, IResponseBussinesStation } from '../../interfaces/ResponseBussines.interface';
@@ -76,5 +77,17 @@ export class BussinesService {
     pipe(
       catchError(this.handleError)
     )
+  }
+  SetBussine(idPerson:string,token:string,bussine:IBussines){
+    return this.http.post(`${environment.apiURL}set-bussine/${idPerson}`,{bussine},{
+      headers:{'x-access':token}
+    })
+    .pipe(catchError(this.handleError))
+  }
+  UpdateBussine(idPerson:string,token:string,bussine:IBussines){
+    return this.http.put(`${environment.apiURL}update-bussine/${idPerson}/edit`,{bussine},{
+      headers:{'x-access':token}
+    })
+    .pipe(catchError(this.handleError))
   }
 }

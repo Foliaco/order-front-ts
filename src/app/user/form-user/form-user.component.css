@@ -75,3 +75,46 @@ form label{
 .state:hover{
   transform:scale(0.9);
 }
+.back{
+  width:100vw;
+  height:100vh;
+  background:var(--sombra);
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:2000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.front{
+  position: relative;
+  background:var(--white);
+  width:90vw;
+  height:80vh;
+  border-radius:6px;
+}
+.front .close{
+  position:absolute;
+  right:10px;
+  top:10px;
+}
+.check-box{
+  border:0.2px solid var(--sombra);
+  padding:10px;
+}
+.sub-check{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.close-1{
+  position:relative !important;
+  top:initial !important;
+  left:initial !important;
+}
+.input-check{
+  width:100%;
+  opacity:0;
+  height:100%
+}

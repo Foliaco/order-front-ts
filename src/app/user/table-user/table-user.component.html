@@ -28,7 +28,7 @@
         <td>{{user.Bussine.name}}</td>
         <td>{{user.Station.name}}</td>
         <td>{{user.Dependecy.name}}</td>
-        <td class="flex center-h"><div class="close {{user.status}}"></div></td>
+        <td class="flex center-h"><div class="close {{user.status===false?'danger':user.status}}"></div></td>
       </tr>
     </tbody>
   </table>

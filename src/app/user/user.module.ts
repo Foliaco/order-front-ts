@@ -5,6 +5,7 @@ import { MainUserComponent } from './main-user/main-user.component';
 import { FormUserComponent } from './form-user/form-user.component';
 import { FormsModule } from '@angular/forms';
 import { TableUserComponent } from './table-user/table-user.component';
+import { SpecialCaracteres } from '../shared/directives/special-caracteres.directive';
 
 
 
@@ -13,7 +14,8 @@ import { TableUserComponent } from './table-user/table-user.component';
     NavbarUserComponent,
     MainUserComponent,
     FormUserComponent,
-    TableUserComponent
+    TableUserComponent,
+    SpecialCaracteres
   ],
   imports: [
     CommonModule,

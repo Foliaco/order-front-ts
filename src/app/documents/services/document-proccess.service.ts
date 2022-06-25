@@ -43,7 +43,7 @@ export class DocumentProccessService {
             },
             error:err=>{
               console.log(err);
-              alert("Error en el servicio");
+              alert("Error en el servicio, por favor intente mas tarde");
             }
           }
         )
@@ -62,7 +62,7 @@ export class DocumentProccessService {
             },
             error:err=>{
               console.log(err);
-              alert("Error en el servicio")
+              alert("Error en el servicio, por favor intente mas tarde")
             }
           }
         )
@@ -100,7 +100,7 @@ export class DocumentProccessService {
             },
             error:err=>{
               console.log(err);
-              alert("Error en el servicio")
+              alert("Error en el servicio, por favor intente mas tarde")
             }
           }
         )
@@ -125,7 +125,7 @@ export class DocumentProccessService {
             },
             error:err=>{
               console.log(err);
-              alert("Error en el servicio")
+              alert("Error en el servicio, por favor intente mas tarde")
             }
           }
         )

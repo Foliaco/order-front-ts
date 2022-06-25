@@ -13,9 +13,9 @@ export class MainGridComponent implements OnInit {
   _bussines:IBussines[];
 
   fillBussines(){
-    this._bussines = this.bussines
-    //window.location=window.location;
-    console.log(this._bussines)
+    //this._bussines = this.bussines
+    window.location=window.location;
+    //console.log(this._bussines)
   }
 
   ngOnInit():void{

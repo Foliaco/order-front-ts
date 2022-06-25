@@ -6,6 +6,8 @@ import { MainComponent } from "../dashboard/components/main/main.component";
 import { StationsComponent } from "../dashboard/components/stations/stations.component";
 import { FormDocumentComponent } from "../documents/components/form-document/form-document.component";
 import { MainUserComponent } from "../user/main-user/main-user.component";
+import { FormBussinesComponent } from "../bussines/components/form-bussines/form-bussines.component";
+import { StationsFormComponent } from "../bussines/components/stations/stations.component";
 
 export const route: Routes = [
   {path:'',component:LoginComponent},
@@ -16,4 +18,6 @@ export const route: Routes = [
   {path:'document/:id',component:FormDocumentComponent},
   {path:'document-edit/:id',component:FormDocumentComponent},
   {path:'dashboard/master-users',component:MainUserComponent},
+  {path:'dashboard/master-bussines',component:FormBussinesComponent},
+  {path:'dashboard/master-stations',component:StationsFormComponent}
 ];

@@ -3,11 +3,14 @@
   /*background-color:red;*/
 }
 .search,.fecha, .tipo_doc{
-  padding:10px;
+  padding:0px;
   display:flex;
   justify-content:flex-start;
   height:120px;
   align-items:center;
+}
+.search{
+  padding:10px;
 }
 .search button{
   background-color:var(--primary);

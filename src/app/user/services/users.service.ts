@@ -62,13 +62,36 @@ export class UsersService {
     )
   }
 
-  SetPerson(idPerson:string,token:string,person:IPersonSend):Observable<any>{
+
+  SetPersonEdit(idPerson:string,token:string,person:IPersonSend,_idPerson:string):Observable<any>{
+    return this.http.put<ResponseRols>(`${environment.apiURL}/edit-person/${idPerson}`,{
+      person,
+      edit:true,
+      idPersonEdit:_idPerson
+    },{
+      headers:{'x-access':token}
+    }).
+    pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  SetPerson(idPerson:string,token:string,person:IPersonSend,_idPerson?:string):Observable<any>{
     return this.http.post<ResponseRols>(`${environment.apiURL}/person/${idPerson}`,{
       person
     },{
       headers:{'x-access':token}
     }).
     pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  UpdatePassword(token:string,idPerson:string,pass:string):Observable<any>{
+    return this.http.put(`${environment.apiURL}change-password/${idPerson}`,{pass},{
+      headers:{'x-access':token}
+    })
+    .pipe(
       catchError(this.handleError)
     )
   }

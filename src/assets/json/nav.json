@@ -2,15 +2,11 @@
   {
       "rol":"ADMIN GOD",
       "navs":[
-              {"name":"Maestro Proveedor","url":"dashboard/master-supplier"},
               {"name":"Maestro Empresas","url":"dashboard/master-bussines"},
               {"name":"Maestro Sedes","url":"dashboard/master-station"},
               {"name":"Maestro Areas","url":"dashboard/master-area"},
               {"name":"Maestro Usuarios","url":"dashboard/master-users"},
-              {"name":"Maestro Productos","url":"dashboard/master-products"},
-              {"name":"Solicitud","url":"dashboard/doc-solicitud"},
-              {"name":"Orden de Compra","url":"dashboard/doc-oc"},
-              {"name":"Documento Guardados","url":"dashboard/doc-save"}
+              {"name":"Maestro Productos","url":"dashboard/master-products"}
       ]
   },
   {
@@ -20,35 +16,26 @@
               {"name":"Maestro Sedes","url":"dashboard/master-station"},
               {"name":"Maestro Areas","url":"dashboard/master-area"},
               {"name":"Maestro Usuarios","url":"dashboard/master-users"},
-              {"name":"Maestro Productos","url":"dashboard/master-products"},
-              {"name":"Orden de Compra","url":"dashboard/doc-oc"}
+              {"name":"Maestro Productos","url":"dashboard/master-products"}
             ]
   },
   {
       "rol":"ADMIN BUSSINES",
       "navs":[
-              {"name":"Maestro Sedes","url":"dashboard/master-station"},
-              {"name":"Maestro Areas","url":"dashboard/master-area"},
-              {"name":"Maestro Usuarios","url":"dashboard/master-users"},
-              {"name":"Maestro Productos","url":"dashboard/master-products"},
-              {"name":"Solicitud","url":"dashboard/doc-solicitud"},
-              {"name":"Orden de Compra","url":"dashboard/doc-oc"},
-              {"name":"Documento Guardados","url":"dashboard/doc-save"}
-      ]
+        {"name":"Maestro Sedes","url":"dashboard/master-station"},
+        {"name":"Maestro Areas","url":"dashboard/master-area"},
+        {"name":"Maestro Usuarios","url":"dashboard/master-users"},
+        {"name":"Maestro Productos","url":"dashboard/master-products"}
+        ]
   },
   {
       "rol":"USER OC",
       "navs":[
-              {"name":"Solicitud","url":"dashboard/doc-solicitud"},
-              {"name":"Orden de Compra","url":"dashboard/doc-oc"},
-              {"name":"Documento Guardados","url":"dashboard/doc-save"}
       ]
   },
   {
       "rol":"USER SOL",
       "navs":[
-              {"name":"Solicitud","url":"dashboard/doc-solicitud"},
-              {"name":"Documento Guardados","url":"dashboard/doc-save"}
       ]
   }
 ]

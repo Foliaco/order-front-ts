@@ -1,0 +1,33 @@
+.back{
+  width:100vw;
+  height:100vh;
+  background-color:var(--sombra);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+}
+.front{
+  padding:20px;
+  width:55vw;
+  height:33vw;
+  background-color:var(--white);
+  border-radius:5px;
+}
+.front .header{
+  border-bottom:0.5px solid var(--sombra);
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:10px 5px;
+}
+.tbody{
+  height:50vh;
+}
+.form label{
+  display:block;
+  margin: auto;
+  margin:10px !important;
+}
