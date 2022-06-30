@@ -1,0 +1,51 @@
+.list{
+  padding:10px;
+}
+.list ul{
+  margin-top:20px;
+  width:100%;
+  list-style:none;
+}
+.list ul li{
+  text-align:left;
+  width:90%;
+  padding:10px;
+  font-size:18px;
+  cursor:pointer;
+  margin:5px;
+  margin-left:0px;
+  border-radius:4px;
+  border:1px solid var(--sombra);
+}
+.list ul li:hover{
+  border-color:var(--white);
+  background-color:var(--primary);
+  color:white;
+  margin-left:15px;
+}
+.list h4{
+  text-align:center;
+  font-size:24px;
+}
+.list button span{
+  font-size:15px;
+}
+.form-control label{
+  display:block;
+  text-align:center;
+  margin:5px;
+}
+.form-control input{
+  margin:0;
+}
+.area_form {
+  justify-items:center;
+  padding:10px 0px;
+  margin:0px auto;
+}
+.li{
+  justify-content:space-between;
+}
+.edit-btn:hover{
+  transform:scale(0.9);
+}

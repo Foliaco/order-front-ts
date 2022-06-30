@@ -1,40 +1,97 @@
 <app-navbar-bussines></app-navbar-bussines>
-
+<app-loading-bussines [hidden]="hidden"></app-loading-bussines>
 <div class="list grid tr-3">
   <div class="left">
     <h4>Empresas</h4>
-    <ul>
-      <li *ngFor="let l of ['abcde','JHD','dj']">Lorem Ipsum is Lorem</li>
+    <ul class="center-v">
+      <li *ngFor="let bus of bussines" data-id="{{bus.idBussine}}" (click)="getStation(bus.idBussine)">{{bus.name}}</li>
     </ul>
   </div>
   <div class="center">
-    <h4>Empresas</h4>
-    <ul>
-      <li *ngFor="let l of ['abcde','JHD','dj']">Lorem Ipsum is Lorem</li>
+    <h4>Sedes</h4>
+    <ul class="center-v">
+      <li class="flex li" *ngFor="let stt of station" (click)="getDependecies(stt.idStation)">{{stt.name}}
+        <div class="edit flex edit-btn center-v bubble" style="width:30px;height:30px" (click)="editSation(stt)" ><img class="img" src="assets/images/edit.png" /></div></li>
+      <li><button (click)="addStation()"><span>Añadir sede a - {{bussine_add.name}}</span></button></li>
     </ul>
   </div>
   <div class="right">
-    <h4>Empresas</h4>
-    <ul>
-      <li *ngFor="let l of ['abcde','JHD','dj']">Lorem Ipsum is Lorem</li>
+    <h4>Areas</h4>
+    <ul class="center-v">
+      <li *ngFor="let _dep of dep" class="flex li">{{_dep.name}} <div class="edit flex edit-btn center-v bubble"  (click)="showFormEdit(_dep)" style="width:30px;height:30px"><img class="img" src="assets/images/edit.png" /></div></li>
+      <li><button (click)="addDependecies()"><span>Añadir area a - {{station_add.name}}</span></button></li>
     </ul>
   </div>
 </div>
 
-<div class="back hidden">
+<div class="back {{hiddenForm}}">
   <div class="front">
       <div class="header">
-        <h2>Creacion de Sedes y Areas</h2>
-        <div class="close danger"></div>
+        <h2>Creacion de Sedes</h2>
+        <div class="close danger" (click)="close()"></div>
       </div>
-
-      <div class="form-control">
-          <select name="bussines" id="">
-            <option *ngFor="let bus of bussines" value="{{bus.idBussine}}">{{bus.name}}</option>
-          </select>
-          <input name="sede"/>
+      <div class="area_form grid tr-2">
+          <div class="form-control">
+            <label for="name"><strong>Nombre</strong></label>
+            <input type="text" name="name" [(ngModel)]="_station_add.name"/>
+          </div>
+          <div class="form-control">
+            <label for="address"><strong>Direccion</strong></label>
+            <input type="text" name="address" [(ngModel)]="_station_add.address" />
+          </div>
+          <div class="form-control">
+            <label for="email"><strong>Correo</strong></label>
+            <input type="email" name="email" [(ngModel)]="_station_add.email" />
+          </div>
+          <div class="form-control">
+            <label for="phone"><strong>Telefono</strong></label>
+            <input type="number" name="phone"[(ngModel)]="_station_add.phone" />
+          </div>
+          <div class="form-control">
+            <label for="idbussine"><strong>Empresa</strong></label>
+            <input type="text" name="idbussine" value="{{bussine_add.name}}" disabled />
+          </div>
+          <div class="form-control" *ngIf="!_editStation;else editBtnStation">
+            <button style="margin-top:20px" (click)="sendStation()"><span>Guardar</span></button>
+          </div>
+          <ng-template #editBtnStation>
+            <div class="form-control">
+              <button style="margin-top:20px;" class="edit-border edit" (click)="sendEditStation()"><span class="white-txt">Editar</span></button>
+            </div>
+          </ng-template>
       </div>
-
+  </div>
+</div>
+<div class="back {{hiddenForm2}}">
+  <div class="front">
+      <div class="header">
+        <h2>Creacion de Area</h2>
+        <div class="close danger" (click)="close2()"></div>
+      </div>
+      <div class="area_form grid tr-2">
+          <div class="form-control">
+            <label for="name"><strong>Nombre</strong></label>
+            <input type="text" name="name" [(ngModel)]="dep_add.name"/>
+          </div>
+          <div class="form-control">
+            <label><strong>Empresa</strong></label>
+            <input disable type="text" disabled value="{{bussine_add.name}}"/>
+          </div>
+          <div class="form-control">
+            <label for="name"><strong>Sede</strong></label>
+            <input type="text" name="sede" disabled value="{{station_add.name}}"/>
+          </div>
+          <div class="form-control">
+            <label for="name"><strong>Feha de Creacion</strong></label>
+            <input type="datetime" name="name" disabled value="{{time|date : 'medium'}}"/>
+          </div>
+          <div class="form-control" *ngIf="!_editDependecie; else editDep">
+            <button style="margin-top:20px" (click)="sendDependecies()"><span>Guardar</span></button>
+          </div>
+          <ng-template #editDep>
+            <button style="margin-top:20px" class=" edit edit-border" (click)="editDependecies()"><span class="white-txt">Editar</span></button>
+          </ng-template>
+      </div>
   </div>
 </div>
 

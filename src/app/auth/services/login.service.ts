@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http'
 import { catchError, Observable, throwError } from 'rxjs';
 import { ILogin } from '../interfaces/Login.interface';
-import { environment } from 'src/environments/environment';
 import { IResponsePerson } from 'src/app/dashboard/interfaces/ResponsePerson.interface';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/app/envieroment/env';
 
 @Injectable({
   providedIn: 'root'

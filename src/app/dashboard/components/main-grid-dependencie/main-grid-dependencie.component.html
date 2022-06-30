@@ -9,9 +9,9 @@
       <img src="../../../../assets/images/workplace.png" />
       <p>Direccion {{dependencie.name}}</p>
     </div>
-    <div class="body">
+    <div class="body flex">
       <button (click)="getPage('main/bussines/station/dependecies',dependencie.idDependecie)" ><span>Ver</span></button>
-      <button (click)="getPage('main/bussines/master-bussines/',dependencie.idDependecie)"><span>Editar</span></button>
+      <button *ngIf="rol!=='USER SOL' && rol!=='USER OC' " (click)="getPage('main/bussines/master-bussines/',dependencie.idDependecie)"><span>Editar</span></button>
     </div>
   </div>
 

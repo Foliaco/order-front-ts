@@ -84,8 +84,18 @@ export class FormUserComponent implements OnInit {
     console.log(this.userEdit)
     this.userServices.SetPersonEdit(this.lc.get('idPerson'),this.lc.get('token'),this.userEdit,this.idPersonEdit)
     .subscribe({
-      next:res=>console.log(res),
-      error:err=>console.log(err)
+      next:res=>{
+        if(res.column==='Token'){
+          this.auth.Logout(this.lc);
+          return;
+        }
+        alert(res.msj);
+        this.searchPerson();
+      },
+      error:err=>{
+        console.log(err);
+        alert('error en la edicion de usuario');
+      }
     })
   }
   sendPerson(e:any){
@@ -113,10 +123,15 @@ export class FormUserComponent implements OnInit {
     .subscribe(
       {
         next:res=>{
-          console.log(res);
+          if(res.column==='Token'){
+            this.auth.Logout(this.lc);
+            return;
+          }
+          alert(res.msj)
         },
         error:err=>{
           console.log(err);
+          alert('Error en los servicios');
         }
       }
     )
@@ -134,8 +149,9 @@ export class FormUserComponent implements OnInit {
   changeTypeDoc(_data:string){
     this.userEdit.idTypeDocument=_data;
   }
-  changeRol(_data:string){
-    this.userEdit.rol=_data;
+  changeRol(_data:any){
+    let data=_data.target.value;
+    this.userEdit.rol=data;
   }
   setTypeDocument(){
     this.userServices.getTypeDocument(this.lc.get('idPerson')).
@@ -192,7 +208,7 @@ export class FormUserComponent implements OnInit {
   setDependencies(event:any,_idStation:number=0){
     let idStation:number=event===undefined?_idStation:parseInt(event.target.value);
     console.log(idStation)
-    this.bussines.GetDependencies(idStation,this.lc.get('token'))
+    this.bussines.GetDependencies(this.lc.get('idPerson'),idStation,this.lc.get('token'))
     .subscribe({
       next:res=>{
         if(res.column==='Token'){

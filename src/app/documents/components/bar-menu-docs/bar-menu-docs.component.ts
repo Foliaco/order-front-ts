@@ -33,6 +33,8 @@ export class BarMenuDocsComponent implements OnInit {
 
   exit(){
     this.lc.clearAll();
+    alert('Cerro sesion con exito');
+    this.router.navigate([''])
   }
 
   ngOnInit(): void {

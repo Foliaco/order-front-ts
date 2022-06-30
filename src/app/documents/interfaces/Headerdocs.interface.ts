@@ -3,6 +3,8 @@ import { IUser } from "src/app/auth/interfaces/Login.interface";
 import { IProduct } from "../../products/interfaces/Products.interfaces";
 
 export type IHeaderDoc={
+  column?:string;
+  msj?:string;
   idDocument:number;
   DetailsDocs:IDetailsDoc[];
   idBussine:IBussines;

@@ -22,9 +22,11 @@ export class MainGridDependencieComponent implements OnInit {
 
   @Input() dependencies:IDependecies[]=[];
 
+  rol:string=this.lc.get('rol');
+
   fillDependencies(){
     let idBussine:number=this.activeRoute.snapshot.params['id']
-    this.bussines.GetDependencies(idBussine,this.lc.get('token')||'')
+    this.bussines.GetDependencies(this.lc.get('idPerson'),idBussine,this.lc.get('token'))
     .subscribe({
       next:res=>{
         this.dependencies=res.data;

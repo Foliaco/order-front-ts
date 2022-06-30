@@ -71,15 +71,25 @@ export class MainComponent implements OnInit {
     })
   }
   getBussines():void{
-    let idSupplier=parseInt(this.lc.get('idSupplier')||'0');
-    this.bussine.GetBussines(idSupplier,this.lc.get('token'),this.idPerson)
-    .subscribe({
-      next:res=>{
-        this.bussines=res.data;
-        //console.log("res desde main ",this.bussines)
-      },
-      error:err=>console.log(err)
-    })
+    let idSupplier=parseInt(this.lc.get('idSupplier')===''?'0':this.lc.get('idSupplier'));
+    //if(this.lc.get('rol')==='USER OC'||this.lc.get('rol')==='USER SOL'){
+      this.bussine.GetBussines(idSupplier,this.lc.get('token'),this.lc.get('idPerson'))
+      .subscribe({
+        next:res=>{
+          console.log(res)
+          this.bussines=res.data;
+        },
+        error:err=>console.log(err)
+      })
+    //}
+    // this.bussine.GetBussinesXIdPerson(this.lc.get('idPerson'),this.lc.get('token'),"CREATE")
+    // .subscribe({
+    //   next:res=>{
+    //     this.bussines=res.data;
+    //     //console.log("res desde main ",this.bussines)
+    //   },
+    //   error:err=>console.log(err)
+    // })
   }
   ngOnInit(): void {
     this.person.GetSession(this.lc.get('token')||'')

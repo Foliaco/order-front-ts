@@ -7,6 +7,7 @@ export type IBussines={
     nit:string;
     createdAt?:Date;
     updatedAt?:Date;
+    Stations?:IStations[]
     idSupplier: number;
 
 }

@@ -4,8 +4,8 @@
     <img src="../../../../assets/images/edificio.png" />
     <p>Nit: {{bussine.nit}}</p>
   </div>
-  <div class="body">
+  <div class="body flex">
     <button (click)="getPage('main/bussines',bussine.idBussine)" ><span>Ver</span></button>
-    <button (click)="getPage('dashboard/master-bussines')"><span>Editar</span></button>
+    <button *ngIf="rol!=='USER SOL' && rol!=='USER OC'" (click)="getPage('dashboard/master-bussines')"><span>Editar</span></button>
   </div>
 </div>

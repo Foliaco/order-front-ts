@@ -1,9 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { IBussines } from 'src/app/auth/interfaces/bussines/Bussines.interfaces';
-import { IPerson } from 'src/app/auth/interfaces/persona/Person.interfaces';
-import { environment } from 'src/environments/environment';
+import { IBussines, IDependecies, IStations } from 'src/app/auth/interfaces/bussines/Bussines.interfaces';
+import { environment } from 'src/app/envieroment/env';
 import { IResponseBussines, IResponseBussinesStation } from '../../interfaces/ResponseBussines.interface';
 import { IResponseDependecies } from '../../interfaces/ResponseDependecies.interface';
 import { IResponseStation } from '../../interfaces/ResponseStation.interfaces';
@@ -46,23 +45,23 @@ export class BussinesService {
         catchError(this.handleError)
       )
   }
-  GetStations(idBussine:number,token:string):Observable<IResponseStation>{
-    return this.http.get<IResponseStation>(`${environment.apiURL}station/${idBussine}`,{
+  GetStations(idBussine:number,idPerson:string,token:string):Observable<IResponseStation>{
+    return this.http.get<IResponseStation>(`${environment.apiURL}station/${idBussine}/${idPerson}`,{
       headers:{'x-access':token}
     }).
     pipe(
       catchError(this.handleError)
     )
   }
-  GetDependencies(idStation:number,token:string):Observable<IResponseDependecies>{
-    return this.http.get<IResponseDependecies>(`${environment.apiURL}dependecies/${idStation}`,{
+  GetDependencies(idPerson:string,idStation:number,token:string):Observable<IResponseDependecies>{
+    return this.http.get<IResponseDependecies>(`${environment.apiURL}dependecies/${idStation}/${idPerson}`,{
       headers:{'x-access':token}
     }).
     pipe(
       catchError(this.handleError)
     )
   }
-  GetStationByIdPerson(idBussine:number,idPerson:string,token:string,action:string='DOC'):Observable<IResponseStation>{
+  GetStationByIdPerson(idBussine:number,idPerson:string,token:string,action:string='DOC'):Observable<IResponseStation>{//?  ver
     return this.http.post<IResponseStation>(`${environment.apiURL}person-station`,{idPerson,idBussine,options:action},{
       headers:{'x-access':token}
     }).
@@ -86,6 +85,30 @@ export class BussinesService {
   }
   UpdateBussine(idPerson:string,token:string,bussine:IBussines){
     return this.http.put(`${environment.apiURL}update-bussine/${idPerson}/edit`,{bussine},{
+      headers:{'x-access':token}
+    })
+    .pipe(catchError(this.handleError))
+  }
+  SetStation(idPerson:string,token:string,station:IStations){
+    return this.http.post(`${environment.apiURL}set-station/${idPerson}`,{station},{
+      headers:{'x-access':token}
+    })
+    .pipe(catchError(this.handleError))
+  }
+  UpdateStation(idPerson:string,token:string,station:IStations){
+    return this.http.put(`${environment.apiURL}update-station/${idPerson}/edit`,{station},{
+      headers:{'x-access':token}
+    })
+    .pipe(catchError(this.handleError))
+  }
+  SetDependencie(idPerson:string,token:string,dependecie:IDependecies){
+    return this.http.post(`${environment.apiURL}set-dependecies/${idPerson}`,{dependecie},{
+      headers:{'x-access':token}
+    })
+    .pipe(catchError(this.handleError))
+  }
+  UpdateDependencie(idPerson:string,token:string,dependecie:IDependecies){
+    return this.http.put(`${environment.apiURL}update-dependecies/${idPerson}/edit`,{dependecie},{
       headers:{'x-access':token}
     })
     .pipe(catchError(this.handleError))

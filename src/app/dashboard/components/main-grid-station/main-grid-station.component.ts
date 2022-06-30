@@ -20,11 +20,12 @@ export class MainGridStationComponent implements OnInit {
     private auth:LoginService
   ) { }
 
+  rol:string=this.lc.get('rol');
   stations:IStations[]=[];
 
   fillStation(){
     let idBussine:number=this.activeRoute.snapshot.params['id']
-    this.bussines.GetStations(idBussine,this.lc.get('token')||'')
+    this.bussines.GetStations(idBussine,this.lc.get('idPerson'),this.lc.get('token'))
     .subscribe({
       next:res=>{
         this.stations=res.data

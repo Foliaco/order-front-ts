@@ -95,6 +95,14 @@ export class ButtonsOptionsComponent implements OnInit {
       this.documentServices.GetDocumentById(this.lc.get('idPerson'),id,this.lc.get('token'))
       .subscribe({
         next:res=>{
+          if(res.column==='Token'){
+            this.router.navigate(['']);
+            return;
+          }
+          if(res.column==='Not Permission'){
+            alert(res.msj);
+            return
+          }
           this.router.navigate(['document-edit',id],
           {queryParams:{'data':JSON.stringify(res)}}
           )

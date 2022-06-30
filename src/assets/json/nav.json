@@ -3,29 +3,31 @@
       "rol":"ADMIN GOD",
       "navs":[
               {"name":"Maestro Empresas","url":"dashboard/master-bussines"},
-              {"name":"Maestro Sedes","url":"dashboard/master-station"},
-              {"name":"Maestro Areas","url":"dashboard/master-area"},
-              {"name":"Maestro Usuarios","url":"dashboard/master-users"},
-              {"name":"Maestro Productos","url":"dashboard/master-products"}
+              {"name":"Maestro Sedes","url":"dashboard/master-stations"},
+              {"name":"Maestro Usuarios","url":"dashboard/master-users"}
       ]
   },
   {
       "rol":"ADMIN APP",
       "navs":[
               {"name":"Maestro Empresas","url":"dashboard/master-bussines"},
-              {"name":"Maestro Sedes","url":"dashboard/master-station"},
-              {"name":"Maestro Areas","url":"dashboard/master-area"},
-              {"name":"Maestro Usuarios","url":"dashboard/master-users"},
-              {"name":"Maestro Productos","url":"dashboard/master-products"}
+              {"name":"Maestro Sedes","url":"dashboard/master-stations"},
+              {"name":"Maestro Usuarios","url":"dashboard/master-users"}
             ]
+  },
+  {
+    "rol":"ADMIN SUPPLIERS",
+    "navs":[
+            {"name":"Maestro Empresas","url":"dashboard/master-bussines"},
+            {"name":"Maestro Sedes","url":"dashboard/master-stations"},
+            {"name":"Maestro Usuarios","url":"dashboard/master-users"}
+          ]
   },
   {
       "rol":"ADMIN BUSSINES",
       "navs":[
-        {"name":"Maestro Sedes","url":"dashboard/master-station"},
-        {"name":"Maestro Areas","url":"dashboard/master-area"},
-        {"name":"Maestro Usuarios","url":"dashboard/master-users"},
-        {"name":"Maestro Productos","url":"dashboard/master-products"}
+        {"name":"Maestro Sedes","url":"dashboard/master-stations"},
+        {"name":"Maestro Usuarios","url":"dashboard/master-users"}
         ]
   },
   {

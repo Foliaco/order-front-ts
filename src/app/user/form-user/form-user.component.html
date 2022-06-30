@@ -258,8 +258,8 @@
           </div>
           <div class="check-box">
             <strong>Rol</strong>
-              <select name="area">
-                <option *ngFor="let _rol of rol" (click)="changeRol(_rol.idRol)" value="{{_rol.idRol}}" [selected]="_rol.idRol===userEdit.rol" >{{_rol.detalle}}</option>
+              <select name="area" (change)="changeRol($event)" >
+                <option *ngFor="let _rol of rol" value="{{_rol.idRol}}" [selected]="_rol.idRol===userEdit.rol" >{{_rol.detalle}}</option>
               </select>
               <div class="check-box flex between center">
                 ACTIVO

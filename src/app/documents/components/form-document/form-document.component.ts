@@ -220,7 +220,7 @@ parse=parseInt;
   }
 
   getStationByIdUser(){
-    this.servicesbussines.GetStationByIdPerson(parseInt(this.lc.get('idBussine')||'0'),this.lc.get('idPerson')||'',this.lc.get('token')||'')
+    this.servicesbussines.GetStationByIdPerson(parseInt(this.lc.get('idBussine')||'0'),this.lc.get('idPerson'),this.lc.get('token'))
     .subscribe({
       next:res=>{
         if(res.column==='Token'){

@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { IPersonSend, ITypeDocument, RequestTypeDocument, ResponseRols } from 'src/app/auth/interfaces/persona/Person.interfaces';
 import { IResponseBussines } from 'src/app/dashboard/interfaces/ResponseBussines.interface';
-import { IResponsePerson, IResponsePersonArray } from 'src/app/dashboard/interfaces/ResponsePerson.interface';
+import { IResponsePersonArray } from 'src/app/dashboard/interfaces/ResponsePerson.interface';
+import { environment } from 'src/app/envieroment/env';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'

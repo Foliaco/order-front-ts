@@ -9,9 +9,9 @@
       <img src="../../../../assets/images/ubicacion.png" />
       <p>Direccion {{station.address}}</p>
     </div>
-    <div class="body">
+    <div class="body flex">
       <button (click)="getPage('main/bussines/station',station.idStation)" ><span>Ver</span></button>
-      <button (click)="getPage('main/bussines/master-bussines/',station.idStation)"><span>Editar</span></button>
+      <button *ngIf="rol!=='USER SOL' && rol!=='USER OC'" (click)="getPage('main/bussines/master-bussines/',station.idStation)"><span>Editar</span></button>
     </div>
   </div>
 
